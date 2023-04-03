@@ -13,8 +13,15 @@ const slice = createSlice({
 	reducers: {
 		setIsLoggedIn: (state, action: PayloadAction<{ isLoggedIn: boolean }>) => {
 			state.isLoggedIn = action.payload.isLoggedIn
-		}
+		},
 	}
+// 	extraReducers: (builder) => {
+// 		builder
+// 			.addCase((state, action) => {
+// 				// action is inferred correctly here if using TS
+//
+// 			})
+// }
 })
 
 export const authReducer = slice.reducer
