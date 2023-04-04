@@ -20,7 +20,11 @@ const slice = createSlice({
             state.unshift({...action.payload.todolist, filter: 'all', entityStatus: 'idle'})
         },
         changeTodolistTitle: (state, action:PayloadAction<{id: string, title: string}>) => {
-          return state.map(tl=> tl.id === action.payload.id ? {...tl, title:action.payload.title} : tl)
+            const todo = state.find(tl => tl.id === action.payload.id)
+            if(todo) {
+                todo.title = action.payload.title
+            }
+          // return state.map(tl=> tl.id === action.payload.id ? {...tl, title:action.payload.title} : tl)
         },
         changeTodolistFilter: (state, action:PayloadAction<{id: string, filter: FilterValuesType}>)=> {
             return state.map(tl => tl.id === action.payload.id ? {...tl, filter: action.payload.filter} : tl)
