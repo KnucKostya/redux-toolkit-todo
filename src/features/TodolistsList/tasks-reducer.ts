@@ -3,6 +3,7 @@ import {AppThunk} from 'app/store'
 import {handleServerAppError, handleServerNetworkError} from 'utils/error-utils'
 import {appActions} from 'app/app-reducer';
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
+import {todolistsActions} from "features/TodolistsList/todolists-reducer";
 
 const initialState: TasksStateType = {}
 
@@ -29,22 +30,29 @@ const slice = createSlice({
         clearTodoState: (state, action:PayloadAction<{id:string}>)=> {
             state[action.payload.id] = []
         },
+        logOutTaskReducer: (state) => {
+            state = {}
+        }
+    },
+    extraReducers: builder => {
+        builder.addCase(todolistsActions.addTodolist,(state, action)=>{
+            // return {...state,[action.todo.id]:[]}
+            state[action.payload.todolist.id] = []
+        })
+            .addCase(todolistsActions.removeTodolist,(state, action)=>{
+                delete state[action.payload.id]
+            })
+            .addCase(todolistsActions.setTodolists,(state, action) => {
+                action.payload.todolists.forEach(td=>{
+                    state[td.id] = []
+                })
+            })
     }
 })
 
 export const tasksReducer = slice.reducer
 export const tasksActions = slice.actions
 
-// export const tasksReducer = (state: TasksStateType = initialState, action: ActionsType): TasksStateType => {
-//         case 'SET-TODOLISTS': {
-//             const copyState = {...state}
-//             action.todolists.forEach(tl => {
-//                 copyState[tl.id] = []
-//             })
-//             return copyState
-// }
-
-// actions
 
 // thunks
 export const fetchTasksTC = (todolistId: string): AppThunk => (dispatch) => {
