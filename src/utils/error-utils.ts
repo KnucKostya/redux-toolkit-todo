@@ -3,7 +3,14 @@ import { Dispatch } from 'redux'
 import { appActions } from 'app/app-reducer';
 import axios, {AxiosError} from "axios";
 
-export const handleServerAppError = <D>(data: ResponseType<D>, dispatch: Dispatch) => {
+/**
+ * handleServerAppError обработка ошибки приложения
+ * @param data респонс дата от сервака
+ * @param dispatch
+ * @param showError необязательный параметр для отображение ошибки
+ */
+
+export const handleServerAppError = <D>(data: ResponseType<D>, dispatch: Dispatch, showError:boolean = true) => {
 	if (data.messages.length) {
 		dispatch(appActions.setAppError({error: data.messages[0]}))
 	} else {
@@ -12,10 +19,11 @@ export const handleServerAppError = <D>(data: ResponseType<D>, dispatch: Dispatc
 	dispatch(appActions.setAppStatus({status: 'failed'}))
 }
 
-export const _handleServerNetworkError = (error: { message: string }, dispatch: Dispatch) => {
-	dispatch(appActions.setAppError({error: error.message ? error.message : 'Some error occurred'}))
-	dispatch(appActions.setAppStatus({status: 'failed'}))
-}
+/**
+ * handleServerNetworkError обработка ошибки соединения с интернетом
+ * @param e ошибка
+ * @param dispatch
+ */
 
 export const handleServerNetworkError = (e: unknown, dispatch: Dispatch) => {
 	const err = e as Error | AxiosError<{ error: string }>
