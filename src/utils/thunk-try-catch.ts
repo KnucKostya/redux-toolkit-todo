@@ -14,5 +14,4 @@ export const thunkTryCatch = async (thunkApi:any,logic:()=>{}) => {
     finally {
         dispatch(appActions.setAppStatus({status: 'idle'}))
     }
-
 }

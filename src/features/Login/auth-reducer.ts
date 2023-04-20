@@ -26,25 +26,8 @@ const login = createAppAsyncThunk<{isLoggedIn: boolean},LoginParamsType>
 const logout = createAppAsyncThunk<{isLoggedIn: boolean},void>
 ('auth/logout',async(arg, thunkAPI)=>{
 	 const{dispatch, rejectWithValue} = thunkAPI
-	//
-	// try{
-	// 	dispatch(appActions.setAppStatus({status: 'loading'}))
-	// 	let res = await authAPI.logout()
-	// 	if (res.data.resultCode === 0) {
-	// 		dispatch(appActions.setAppStatus({status: 'succeeded'}))
-	// 		dispatch(todolistsActions.logOutTodoReducer())
-	// 		dispatch(tasksActions.logOutTaskReducer())
-	// 		return {isLoggedIn: false}
-	// 	} else {
-	// 		handleServerAppError(res.data, dispatch)
-	// 		return rejectWithValue(null)
-	// 	}
-	// }catch (e){
-	// 	handleServerNetworkError(e,dispatch)
-	// 	return rejectWithValue(null)
-	// }
 
-	return thunkTryCatch(thunkAPI,async ()=>{
+		return thunkTryCatch(thunkAPI,async ()=>{
 		let res = await authAPI.logout()
 		if (res.data.resultCode === 0) {
 			dispatch(appActions.setAppStatus({status: 'succeeded'}))
