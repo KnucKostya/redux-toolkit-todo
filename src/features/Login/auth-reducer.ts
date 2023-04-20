@@ -1,5 +1,5 @@
 import { authAPI, LoginParamsType } from 'api/todolists-api'
-import { handleServerAppError, handleServerNetworkError } from 'utils/error-utils'
+import { handleServerAppError } from 'utils/error-utils'
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 import { appActions } from 'app/app-reducer';
 import {todolistsActions} from "features/TodolistsList/todolists-reducer";
@@ -24,25 +24,38 @@ const login = createAppAsyncThunk<{isLoggedIn: boolean},LoginParamsType>
 })
 
 const logout = createAppAsyncThunk<{isLoggedIn: boolean},void>
-('auth/logout',async (arg, thunkAPI)=>{
-	const{dispatch, rejectWithValue} = thunkAPI
+('auth/logout',async(arg, thunkAPI)=>{
+	 const{dispatch, rejectWithValue} = thunkAPI
+	//
+	// try{
+	// 	dispatch(appActions.setAppStatus({status: 'loading'}))
+	// 	let res = await authAPI.logout()
+	// 	if (res.data.resultCode === 0) {
+	// 		dispatch(appActions.setAppStatus({status: 'succeeded'}))
+	// 		dispatch(todolistsActions.logOutTodoReducer())
+	// 		dispatch(tasksActions.logOutTaskReducer())
+	// 		return {isLoggedIn: false}
+	// 	} else {
+	// 		handleServerAppError(res.data, dispatch)
+	// 		return rejectWithValue(null)
+	// 	}
+	// }catch (e){
+	// 	handleServerNetworkError(e,dispatch)
+	// 	return rejectWithValue(null)
+	// }
 
-	try{
-		dispatch(appActions.setAppStatus({status: 'loading'}))
+	return thunkTryCatch(thunkAPI,async ()=>{
 		let res = await authAPI.logout()
-				if (res.data.resultCode === 0) {
-					dispatch(appActions.setAppStatus({status: 'succeeded'}))
-					dispatch(todolistsActions.logOutTodoReducer)
-					dispatch(tasksActions.logOutTaskReducer)
-					return {isLoggedIn: false}
-				} else {
-					handleServerAppError(res.data, dispatch)
-					return rejectWithValue(null)
-				}
-	}catch (e){
-		handleServerNetworkError(e,dispatch)
-		return rejectWithValue(null)
-	}
+		if (res.data.resultCode === 0) {
+			dispatch(appActions.setAppStatus({status: 'succeeded'}))
+			dispatch(todolistsActions.logOutTodoReducer())
+			dispatch(tasksActions.logOutTaskReducer())
+			return {isLoggedIn: false}
+		} else {
+			handleServerAppError(res.data, dispatch)
+			return rejectWithValue(null)
+		}
+	})
 })
 
 

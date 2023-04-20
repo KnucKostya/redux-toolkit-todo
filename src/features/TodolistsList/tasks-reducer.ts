@@ -122,7 +122,7 @@ const slice = createSlice({
             state[action.payload.id] = []
         },
         logOutTaskReducer: (state) => {
-            state = {}
+           return state = {}
         }
     },
     extraReducers: builder => {

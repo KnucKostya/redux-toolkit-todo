@@ -143,13 +143,6 @@ const slice = createSlice({
         addTodolist: (state, action: PayloadAction<{ todolist: TodolistType }>) => {
             state.unshift({...action.payload.todolist, filter: 'all', entityStatus: 'idle'})
         },
-        // changeTodolistTitle: (state, action: PayloadAction<{ id: string, title: string }>) => {
-        //     // const todo = state.find(tl => tl.id === action.payload.id)
-        //     // if (todo) {
-        //     //     todo.title = action.payload.title
-        //     // }
-        //     return state.map(tl=> tl.id === action.payload.id ? {...tl, title:action.payload.title} : tl)
-        // },
         changeTodolistFilter: (state, action: PayloadAction<{ id: string, filter: FilterValuesType }>) => {
             return state.map(tl => tl.id === action.payload.id ? {...tl, filter: action.payload.filter} : tl)
         },
@@ -160,7 +153,7 @@ const slice = createSlice({
             return action.payload.todolists?.map(tl => ({...tl, filter: 'all', entityStatus: 'idle'}))
         },
         logOutTodoReducer: (state) => {
-            state = []
+            return state = []
         }
 
     },

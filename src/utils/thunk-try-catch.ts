@@ -3,7 +3,6 @@ import {appActions} from "app/app-reducer";
 
 export const thunkTryCatch = async (thunkApi:any,logic:()=>{}) => {
     const{dispatch, rejectWithValue} = thunkApi
-
     try{
         dispatch(appActions.setAppStatus({status: 'loading'}))
         return logic()
