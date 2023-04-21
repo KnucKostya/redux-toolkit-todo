@@ -1,13 +1,13 @@
 {
   "files": {
-    "main.css": "/redux-toolkit-todo.git/static/css/main.9eeb2cba.css",
-    "main.js": "/redux-toolkit-todo.git/static/js/main.24f2627b.js",
-    "index.html": "/redux-toolkit-todo.git/index.html",
-    "main.9eeb2cba.css.map": "/redux-toolkit-todo.git/static/css/main.9eeb2cba.css.map",
-    "main.24f2627b.js.map": "/redux-toolkit-todo.git/static/js/main.24f2627b.js.map"
+    "main.css": "/redux-toolkit-todo/static/css/main.9eeb2cba.css",
+    "main.js": "/redux-toolkit-todo/static/js/main.cf226aa4.js",
+    "index.html": "/redux-toolkit-todo/index.html",
+    "main.9eeb2cba.css.map": "/redux-toolkit-todo/static/css/main.9eeb2cba.css.map",
+    "main.cf226aa4.js.map": "/redux-toolkit-todo/static/js/main.cf226aa4.js.map"
   },
   "entrypoints": [
     "static/css/main.9eeb2cba.css",
-    "static/js/main.24f2627b.js"
+    "static/js/main.cf226aa4.js"
   ]
 }
