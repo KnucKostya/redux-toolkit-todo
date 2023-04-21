@@ -2,7 +2,7 @@ import React, { useCallback, useEffect } from 'react'
 import './App.css'
 import { TodolistsList } from 'features/TodolistsList/TodolistsList'
 import { ErrorSnackbar } from 'components/ErrorSnackbar/ErrorSnackbar'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 import { AppRootStateType } from './store'
 import {appThunks, RequestStatusType} from './app-reducer'
 import { BrowserRouter, Route, Routes } from 'react-router-dom'
@@ -20,6 +20,7 @@ import {
 import { Menu } from '@mui/icons-material'
 import {selectIsInitialized, selectIsLoggedIn, selectStatus} from "app/app-selectors";
 import {authThunks} from "features/Login/auth-reducer";
+import {useActions} from "utils/useAction";
 
 type PropsType = {
 	demo?: boolean
@@ -29,14 +30,16 @@ function App({demo = false}: PropsType) {
 	const status = useSelector<AppRootStateType, RequestStatusType>(selectStatus)
 	const isInitialized = useSelector<AppRootStateType, boolean>(selectIsInitialized)
 	const isLoggedIn = useSelector<AppRootStateType, boolean>(selectIsLoggedIn)
-	const dispatch = useDispatch<any>()
+
+	const { initializeApp } = useActions(appThunks)
+	const { logout } = useActions(authThunks)
 
 	useEffect(() => {
-		dispatch(appThunks.initializeApp())
+		initializeApp()
 	}, [])
 
 	const logoutHandler = useCallback(() => {
-		dispatch(authThunks.logout())
+		logout()
 	}, [])
 
 	if (!isInitialized) {
