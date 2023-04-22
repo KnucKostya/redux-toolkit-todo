@@ -4,8 +4,8 @@ import {AppRootStateType} from 'app/store'
 import {
     FilterValuesType,
     TodolistDomainType, todolistsActions, todoListsThunks
-} from './todolists-reducer'
-import {TasksStateType, tasksThunks} from './tasks-reducer'
+} from 'features/TodolistsList/todo/todolists-reducer'
+import {TasksStateType, tasksThunks} from 'features/TodolistsList/tasks/tasks-reducer'
 import {Grid, Paper} from '@mui/material'
 import {AddItemForm} from 'components/AddItemForm/AddItemForm'
 import {Todolist} from './Todolist/Todolist'
@@ -36,22 +36,13 @@ export const TodolistsList: React.FC<PropsType> = ({demo = false}) => {
         fetchTodoLists()
     }, [])
 
-    const removeTask = useCallback(function (taskId: string, todolistId: string) {
-        dispatch(tasksThunks.removeTask({taskId, todolistId}))
-    }, [])
 
     const addTask = useCallback(function (title: string, todolistId: string) {
         const thunk = tasksThunks.addTask({title, todolistId})
         dispatch(thunk)
     }, [])
 
-    const changeStatus = useCallback(function (id: string, status: TaskStatuses, todolistId: string) {
-        updateTask({taskId: id, model: {status}, todolistId})
-    }, [])
 
-    const changeTaskTitle = useCallback(function (id: string, newTitle: string, todolistId: string) {
-        updateTask({taskId: id, model: {title: newTitle}, todolistId})
-    }, [])
 
     const changeFilter = useCallback(function (value: FilterValuesType, todolistId: string) {
         const action = todolistsActions.changeTodolistFilter({id: todolistId, filter: value})
@@ -89,12 +80,9 @@ export const TodolistsList: React.FC<PropsType> = ({demo = false}) => {
                             <Todolist
                                 todolist={tl}
                                 tasks={allTodolistTasks}
-                                removeTask={removeTask}
                                 changeFilter={changeFilter}
                                 addTask={addTask}
-                                changeTaskStatus={changeStatus}
-                                removeTodolist={removeTodoList}
-                                changeTaskTitle={changeTaskTitle}
+                                removeTodoList={removeTodoList}
                                 changeTodolistTitle={changeTodoListTitle}
                                 demo={demo}
                             />

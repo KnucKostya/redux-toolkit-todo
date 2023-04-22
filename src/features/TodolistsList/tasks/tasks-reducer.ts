@@ -9,7 +9,7 @@ import {
 import {handleServerAppError, handleServerNetworkError} from 'utils/error-utils'
 import {appActions} from 'app/app-reducer';
 import {createSlice, PayloadAction} from "@reduxjs/toolkit";
-import {todolistsActions} from "features/TodolistsList/todolists-reducer";
+import {todolistsActions} from "features/TodolistsList/todo/todolists-reducer";
 import {createAppAsyncThunk} from "utils/create-app-async-thunk";
 import {thunkTryCatch} from "utils/thunk-try-catch";
 
