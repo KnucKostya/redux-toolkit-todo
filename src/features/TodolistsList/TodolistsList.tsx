@@ -4,7 +4,7 @@ import {AppRootStateType} from 'app/store'
 import {
     FilterValuesType,
     TodolistDomainType, todolistsActions, todoListsThunks
-} from 'features/TodolistsList/todo/todolists-reducer'
+} from 'features/TodolistsList/Todolist/todolists-reducer'
 import {TasksStateType, tasksThunks} from 'features/TodolistsList/tasks/tasks-reducer'
 import {Grid, Paper} from '@mui/material'
 import {AddItemForm} from 'components/AddItemForm/AddItemForm'
@@ -12,7 +12,6 @@ import {Todolist} from './Todolist/Todolist'
 import {Navigate} from 'react-router-dom'
 import {useAppDispatch} from 'hooks/useAppDispatch';
 import {selectIsLoggedIn, selectTasks, selectTodolists} from "app/app-selectors";
-import {TaskStatuses} from "api/todolists-api";
 import {useActions} from "utils/useAction";
 
 type PropsType = {
@@ -82,7 +81,7 @@ export const TodolistsList: React.FC<PropsType> = ({demo = false}) => {
                                 tasks={allTodolistTasks}
                                 changeFilter={changeFilter}
                                 addTask={addTask}
-                                removeTodoList={removeTodoList}
+                                removeTodolist={removeTodoList}
                                 changeTodolistTitle={changeTodoListTitle}
                                 demo={demo}
                             />

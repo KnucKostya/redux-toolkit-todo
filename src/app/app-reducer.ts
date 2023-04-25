@@ -1,10 +1,8 @@
-import {Dispatch} from 'redux'
-import {authAPI} from 'api/todolists-api'
 import {authActions} from 'features/Login/auth-reducer';
 import {createSlice, PayloadAction} from '@reduxjs/toolkit';
 import {createAppAsyncThunk} from "utils/create-app-async-thunk";
 import {handleServerNetworkError} from "utils/error-utils";
-import {thunkTryCatch} from "utils/thunk-try-catch";
+import {authAPI} from "api/auth-api";
 
 
 const initialState = {

@@ -7,8 +7,8 @@ import {useAppDispatch} from 'hooks/useAppDispatch';
 import {Button, Checkbox, FormControl, FormControlLabel, FormGroup, FormLabel, Grid, TextField} from '@mui/material'
 import {selectIsLoggedIn} from "app/app-selectors";
 import {authThunks} from "features/Login/auth-reducer";
-import {LoginParamsType, ResponseType} from "api/todolists-api";
 import style from './login.module.css'
+import {LoginParamsType, ResponseType} from "api/auth-api";
 
 export const Login = () => {
     const dispatch = useAppDispatch()

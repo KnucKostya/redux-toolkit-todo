@@ -1,13 +1,13 @@
-import { ResponseType } from 'api/todolists-api'
 import { Dispatch } from 'redux'
 import { appActions } from 'app/app-reducer';
 import axios, {AxiosError} from "axios";
+import {ResponseType} from "api/auth-api";
 
 /**
- * handleServerAppError обработка ошибки приложения
- * @param data респонс дата от сервака
+ * handleServerAppError app error handling
+ * @param data response data from server
  * @param dispatch
- * @param showError необязательный параметр для отображение ошибки
+ * @param showError ?param for showing error
  */
 
 export const handleServerAppError = <D>(data: ResponseType<D>, dispatch: Dispatch, showError:boolean = true) => {

@@ -1,11 +1,11 @@
-import { authAPI, LoginParamsType } from 'api/todolists-api'
-import { handleServerAppError } from 'utils/error-utils'
-import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { appActions } from 'app/app-reducer';
-import {todolistsActions} from "features/TodolistsList/todo/todolists-reducer";
+import {handleServerAppError} from 'utils/error-utils'
+import {createSlice, PayloadAction} from '@reduxjs/toolkit';
+import {appActions} from 'app/app-reducer';
+import {todolistsActions} from "features/TodolistsList/Todolist/todolists-reducer";
 import {tasksActions} from "features/TodolistsList/tasks/tasks-reducer";
 import {createAppAsyncThunk} from "utils/create-app-async-thunk";
 import {thunkTryCatch} from "utils/thunk-try-catch";
+import {authAPI, LoginParamsType} from "api/auth-api";
 
 
 // thunks
